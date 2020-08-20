@@ -6,7 +6,7 @@ if { ![file isdirectory $::env(OUT_DIR)] } {
 	exec mkdir $::env(OUT_DIR)/
 }
 
-puts_info "Running LVS..."
+puts "Running LVS..."
 
 set layout $::env(SPICE_NETLIST)
 set schematic $::env(CURRENT_NETLIST)

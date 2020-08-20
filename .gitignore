@@ -12,3 +12,5 @@ scripts/config.status
 *~
 *.log
 UPDATE_ME
+!testcases/*/*/*.log
+!testcases/*/*/*/*.log
