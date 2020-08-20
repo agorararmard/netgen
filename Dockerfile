@@ -20,18 +20,17 @@ RUN yum groupinstall -y "Development Tools" "Development Libraries"
 RUN yum -y install centos-release-scl && \
     yum -y install devtoolset-8 devtoolset-8-libatomic-devel
 
+# python 3.6
+RUN yum install -y https://repo.ius.io/ius-release-el6.rpm
+RUN yum install -y python36u python36u-libs python36u-devel python36u-pip python36u-tkinter
+RUN alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
+
 # netgen dependencies
 RUN yum install -y csh wget tcl-devel tk-devel libX11-devel cairo-devel ncurses-devel
 
 #General utils
 RUN yum install -y tcllib
 RUN yum install -y git tcl tk libjpeg libgomp libXext libSM libXft libffi cairo gettext Xvfb
-
-
-# python 3.6
-RUN yum install -y https://repo.ius.io/ius-release-el6.rpm
-RUN yum install -y python36u python36u-pip python36u-tkinter
-RUN alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 60
 
 # Install python dependencies
 RUN pip3.6 install --upgrade pip 
@@ -58,4 +57,4 @@ RUN date +"Build Timestamp: %Y-%m-%d_%H-%M-%S" > /build/version/netgen.version
 RUN git rev-parse HEAD >> /build/version/netgen.version
 RUN tar -czf /build.tar.gz /build
 
-WORKDIR /netgen/
+WORKDIR /netgen_root
