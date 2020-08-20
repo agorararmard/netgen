@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 export PDK_ROOT=$(pwd)/pdks
 export RUN_ROOT=$(pwd)
 echo $PDK_ROOT
@@ -33,8 +32,8 @@ echo "Difference With Benchmark:"
 diff -s $TEST $BENCHMARK
 
 testSignal=$(diff -s $TEST $BENCHMARK | grep "identical" | wc -l)
-if ! [[ $testSignal ]]; then test_antenna_violations=-1; fi
+if ! [[ $testSignal ]]; then testSignal=-1; fi
 
-if [ $benchmark_antenna_violations -ne 1 ]; then echo "Differences Exist between the two files"; exit -1; fi
+if [ $testSignal -ne 1 ]; then echo "Differences Exist between the two files"; exit -1; fi
 
 exit 0
